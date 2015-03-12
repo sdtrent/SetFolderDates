@@ -1,15 +1,16 @@
-#Change Folder Modification Dates to reflect the date of the newest file contained in eaxh folder and subfolders.
+@@ -0,0 +1,41 @@
+#Change Folder Modification Dates to reflect the date of the newest file contained in each folder and sub-folders.
 #To use this you must first run powershell.exe as admin and update the Execution Policy using the command below.
 #> Set-ExecutionPolicy RemoteSigned
-#Confirm that you want to make the change when promopted
+#Confirm that you want to make the change when promoted
 #You can then run the script from the Windows PowerShell ISE
 #Shane Trent, shanedtrent@gmail.com, fettricks.blogspot.com
 
 Clear  #clear console text
 $FolderNav = New-Object -com Shell.Application  # Create application object to be used to display navigation box
 $BrowseFolderOptions = 513  #Options, &h200 (512, no New Folder Button) + &h1 (1, File system directories only)
-$folder = $FolderNav.BrowseForFolder(0, "Select Folder for processing.", $BrowseFolderOptions, "") #Diplay nav box and get folder to process
-if ($folder.Self.Path) #Proceed only if a folder was selected, exit if canceled
+$folder = $FolderNav.BrowseForFolder(0, "Select Folder for processing.", $BrowseFolderOptions, "") #Display nav box and get folder to process
+if ($folder.Self.Path) #Proceed only if a folder was selected, exit if cancelled
   { 
   $ConfirmPath=[System.Windows.Forms.MessageBox]::Show($folder.Self.Path,"Confirm Folder to be processed.",[System.Windows.Forms.MessageBoxButtons]::OKCancel)
   switch ($ConfirmPath)    #Have the user to confirm the path to the folder to be processed
@@ -34,8 +35,8 @@ if ($folder.Self.Path) #Proceed only if a folder was selected, exit if canceled
       }
     "Cancel" 
        {
-       Write-Host "You canceled the selected folder path"  #We land here if the user canceled the path confirmation message box                                      
+       Write-Host "You cancelled the selected folder path"  #We land here if the user cancelled the path confirmation message box                                      
        }
      }
    }
-else {Write-Host "You canceled the folder selection."}     #And we land here if the user canceled the folder navigation box
+else {Write-Host "You cancelled the folder selection."}     #And we land here if the user cancelled the folder navigation box
