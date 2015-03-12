@@ -1,4 +1,4 @@
-#Change Folder Modification Dates to reflect the date of the newest file contained in each folder and sub-folders.
+#Change Folder Modification Dates to the date of the newest file in each folder.
 #To use this you must first run powershell.exe as admin and update the Execution Policy using the command below.
 #> Set-ExecutionPolicy RemoteSigned
 #Confirm that you want to make the change when promoted
@@ -6,7 +6,7 @@
 #Shane Trent, shanedtrent@gmail.com, fettricks.blogspot.com
 
 Clear  #clear console text
-$FolderNav = New-Object -com Shell.Application  # Create application object to be used to display navigation box
+$FolderNav = New-Object -com Shell.Application  #Create application object to be used to display navigation box
 $BrowseFolderOptions = 513  #Options, &h200 (512, no New Folder Button) + &h1 (1, File system directories only)
 $folder = $FolderNav.BrowseForFolder(0, "Select Folder for processing.", $BrowseFolderOptions, "") #Display nav box and get folder to process
 if ($folder.Self.Path) #Proceed only if a folder was selected, exit if cancelled
@@ -23,8 +23,8 @@ if ($folder.Self.Path) #Proceed only if a folder was selected, exit if cancelled
       for ($i=0; $i -lt $FolderArray.count; $i++)    #Process each folder
         { 
         $NewestFile = ($FolderArray[$i] | Get-ChildItem -recurse | Where-Object  {!$_.PsIsContainer} | Sort-Object LastWriteTime | Select-Object -last 1) # Find newest file in the tree
-        if ($NewestFile) {$FolderArray[$i].LastWriteTime = $NewestFile.LastWriteTime}               #If there is a file, update the folder date
-        $d = [decimal]::round(($i /$FolderArray.count) * 100)                       #Calculate the percentage of folders processed for bar and status text
+        if ($NewestFile) {$FolderArray[$i].LastWriteTime = $NewestFile.LastWriteTime} #If there is a file, update the folder date
+        $d = [decimal]::round(($i /$FolderArray.count) * 100)                         #Calculate the percentage of folders processed for bar and status text
         Write-Progress -Activity "Processing.." -PercentComplete $d -CurrentOperation "$d% complete" -Status "Please wait."  #Update progress bar
         } 
       Write-Host "Processing Completed." "Processed" ($FolderArray.count) "folders!"  #We are done, write stats to console
