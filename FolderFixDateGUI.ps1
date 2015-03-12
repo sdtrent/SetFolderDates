@@ -1,4 +1,3 @@
-@@ -0,0 +1,41 @@
 #Change Folder Modification Dates to reflect the date of the newest file contained in each folder and sub-folders.
 #To use this you must first run powershell.exe as admin and update the Execution Policy using the command below.
 #> Set-ExecutionPolicy RemoteSigned
@@ -40,3 +39,4 @@ if ($folder.Self.Path) #Proceed only if a folder was selected, exit if cancelled
      }
    }
 else {Write-Host "You cancelled the folder selection."}     #And we land here if the user cancelled the folder navigation box
+
