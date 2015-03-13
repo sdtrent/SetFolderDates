@@ -1,0 +1,2 @@
+#This script sets the modified date of every folder in the target directory to the modified date of the most recentley modified file in the folder or sub folder
+DIR "H:\DropBox\FolderDateFix\Test1" -recurse | Where-Object {$_.PsIsContainer} | ForEach-Object {$_.LastWriteTime = ($_ | DIR -recurse | Where-Object {!$_.PsIsContainer} | Sort-Object LastWriteTime | Select-Object -last 1).LastWriteTime} #displays errors on empty folders
