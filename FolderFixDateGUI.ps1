@@ -14,7 +14,7 @@ if ($folder.Self.Path) #Proceed only if a folder was selected, exit if cancelled
   $ConfirmPath=[System.Windows.Forms.MessageBox]::Show($folder.Self.Path,"Confirm Folder to be processed.",[System.Windows.Forms.MessageBoxButtons]::OKCancel)
   switch ($ConfirmPath)    #Have the user to confirm the path to the folder to be processed
     {
-    "OK" 
+    "OK"  #The OK button was clicked in the folder Confirmation dialog box
       { 
       Write-Host "Folder Path Selected - " $folder.Self.Path    #Print the selected folder to the console
       Set-Location $folder.Self.Path                            #Set the path to the folder to be processed
@@ -32,7 +32,7 @@ if ($folder.Self.Path) #Proceed only if a folder was selected, exit if cancelled
       $message = ($FolderArray.count) , " Folders were processed."                    #Build message for final message box
       [System.Windows.Forms.MessageBox]::Show($message , "Processing Completed!")     #Display message box with number of folders processed
       }
-    "Cancel" 
+    "Cancel"  #The Cancel button was clicked in the folder Confirmation box.
        {
        Write-Host "You cancelled the selected folder path"  #We land here if the user cancelled the path confirmation message box                                      
        }
