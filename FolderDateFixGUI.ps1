@@ -1,7 +1,7 @@
 #Change Folder Modification Dates to the date of the newest file in each folder.
 #To use this you must first run powershell.exe as admin and update the Execution Policy using the command below.
 #> Set-ExecutionPolicy RemoteSigned
-#Confirm that you want to make the change when promoted
+#Confirm that you want to make the change when propmted
 #You can then run the script from the Windows PowerShell ISE
 #Shane Trent, shanedtrent@gmail.com, fettricks.blogspot.com
 
