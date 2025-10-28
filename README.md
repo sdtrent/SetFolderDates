@@ -8,7 +8,7 @@ Your execution policy in PowerShell will need to be set to at least RemoteSigned
 
 You can read more about execution policy at the link below.
 
-http://technet.microsoft.com/en-us/library/ee176949.aspx
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.5
 
 The script provides a windows prompt for selecting the target folder and provides a progress bar of the processing. The script uses a very bruit force approach that greatly simplifies the code. The script re-processes the folder tree for every folder to find the newest file contained in that folder or any of it's sub-folders. I suspect the dates could be found more efficiently by loading the date into an array and sorting the data by paths or dates. But CPU cycles are cheap so the simple brute force approach was selected.
 
